@@ -11,12 +11,12 @@
 
 
 ### 平衡车原理图：
-![](./image/hw_sch.png)
+![avatar](/image/hw_sch.png)
 
 ### 平衡车PCB：
-![](./image/hw_pcb.png)
+![avatar](/image/hw_pcb.png)
 
 ### 平衡车上位机bc_upper：
-![](./image/bc_upper.png)
+![image](/image/bc_upper.png)
 
 
