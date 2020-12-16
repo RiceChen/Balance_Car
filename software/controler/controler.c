@@ -149,23 +149,23 @@ static void ctrl_thread_entry(void *parameter)
 
 int controler_init()
 {
-//    show_menu_process();
-//
-//    rt_thread_init(&ctrl_thread,
-//                   "ctrl",
-//                   ctrl_thread_entry,
-//                   RT_NULL,
-//                   &ctrl_stack[0],
-//                   sizeof(ctrl_stack),
-//                   5, 20);
-//    if(rt_thread_startup(&ctrl_thread) != RT_EOK)
-//    {
-//        rt_kprintf("control thread start fail\n");
-//        return RT_ERROR;
-//    }
+    show_menu_process();
+
+    rt_thread_init(&ctrl_thread,
+                   "ctrl",
+                   ctrl_thread_entry,
+                   RT_NULL,
+                   &ctrl_stack[0],
+                   sizeof(ctrl_stack),
+                   5, 20);
+    if(rt_thread_startup(&ctrl_thread) != RT_EOK)
+    {
+        rt_kprintf("control thread start fail\n");
+        return RT_ERROR;
+    }
 
     ble_ctrl_init();
-//    show_ctrl_init();
+    show_ctrl_init();
 
     rt_kprintf("control start finish\n");
 
