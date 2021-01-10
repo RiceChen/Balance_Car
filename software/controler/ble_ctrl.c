@@ -30,6 +30,7 @@ static void ble_thread_entry(void *parameter)
         msg.ch1_data = angle_parm.out_angle * 1000;
         msg.ch2_data = angle_parm.angle * 1000;
         msg.ch3_data = angle_parm.angle_increment * 1000;
+        msg.ch4_data = angle_parm.balance_gyor * 1000;
         sds_output_data(&msg);
 
         rt_thread_delay(1);
@@ -46,11 +47,11 @@ int ble_ctrl_init(void)
                    sizeof(ble_stack),
                    6, 20);
 
-//    if(rt_thread_startup(&ble_thread) != RT_EOK)
-//    {
-//        rt_kprintf("ble thread start fail\n");
-//        return RT_ERROR;
-//    }
+    if(rt_thread_startup(&ble_thread) != RT_EOK)
+    {
+        rt_kprintf("ble thread start fail\n");
+        return RT_ERROR;
+    }
 
     ble_recv_cb_register(ble_recv_data);
 

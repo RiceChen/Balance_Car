@@ -11,7 +11,6 @@ int main(void)
 
     while (count++)
     {
-//        LOG_D("RT-Thread hello");
         rt_thread_mdelay(1000);
     }
 

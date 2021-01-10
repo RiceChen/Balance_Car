@@ -128,10 +128,22 @@ void ctrl_set_speed()
         speed_parm.out_pwm = 4000;
     }
 
-    rt_left_motor_set_pwm(speed_parm.out_pwm + speed_parm.turn_pwm, direction);
-    rt_right_motor_set_pwm(speed_parm.out_pwm + speed_parm.turn_pwm, direction);
+    if(speed_parm.turn_pwm > 0)
+    {
+        rt_left_motor_set_pwm(speed_parm.out_pwm + speed_parm.turn_pwm, direction);
+        rt_right_motor_set_pwm(speed_parm.out_pwm - speed_parm.turn_pwm, direction);
+    }
+    else if(speed_parm.turn_pwm < 0)
+    {
+        rt_left_motor_set_pwm(speed_parm.out_pwm - speed_parm.turn_pwm, direction);
+        rt_right_motor_set_pwm(speed_parm.out_pwm + speed_parm.turn_pwm, direction);
+    }
+    else
+    {
+        rt_left_motor_set_pwm(speed_parm.out_pwm + speed_parm.turn_pwm, direction);
+        rt_right_motor_set_pwm(speed_parm.out_pwm + speed_parm.turn_pwm, direction);
+    }
 }
-
 static void ctrl_thread_entry(void *parameter)
 {
     for(;;)
