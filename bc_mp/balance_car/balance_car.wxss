@@ -38,22 +38,6 @@
   width: auto;
 }
 
-.bc_set_param {
-  text-align: center;
-  font-size: 100%;
-  width: 30%;
-  margin-left: 35%;
-  margin-right: 35%;
-}
-
-.weui-cell_vcode {
-  height: 15px;
-}
-
-.weui-label{
-  width:3.2em
-}
-
 .button-sp-area {
   /* margin-top: 5px; */
   text-align:center;
@@ -64,6 +48,7 @@
 .weui-btn_mini {
   width: 20%;
   height: 100rpx;
+  margin-top: 15px;
   margin-left: 5%;
   margin-right: 5%;
   padding: 0;

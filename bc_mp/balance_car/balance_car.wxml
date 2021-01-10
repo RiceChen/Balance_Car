@@ -4,7 +4,7 @@
 	<view class="connect_info">
 		<view>
 			<text>R-Plan Car BLE：{{ble_connect_state}}</text>
-			<button class="bc_bt" size="mini" style="width:22vw; font-size: 4vw" bindtap="openBluetoothAdapter">断开连接</button>
+			<button class="bc_bt" size="mini" style="width:22vw; font-size: 4vw" bindtap='openBluetoothAdapter'>开始扫描</button>
 		</view>
 	</view>
 
@@ -26,87 +26,46 @@
 		<view class="log_info">
 			<view>
 				<text>Log:</text>
-				<button class="bc_bt" size="mini" style="width:22vw; font-size: 4vw" bindtap="openBluetoothAdapter">清空信息</button>
+				<button class="bc_bt" size="mini" style="width:22vw; font-size: 4vw" bindtap="bindClearLog">清空信息</button>
 			</view>
 			<scroll-view class="log_list" scroll-y scroll-with-animation>
 				<text style="font-size: 10px">{{log_list}}</text>
 			</scroll-view>
 		</view>
 
-		<view class="bc_set_param">
-			<picker-view indicator-style="height: 30px;" style="width: 100%; height: 60px;" value="{{value}}" bindchange="bc_param_change">
-				<picker-view-column>
-					<view wx:for="{{bc_param}}" wx:key="{{bc_param}}" style="line-height: 30px text-align: center;">{{item}}</view>
-					<view wx:for="{{years}}" wx:key="{{years}}" style="line-height: 50px; text-align: center;">{{item}}年</view>
-				</picker-view-column>
-			</picker-view>
-		</view>
-
-		<view class="weui-cells__group weui-cells__group_form">
-			<view class="weui-cells weui-cells_form">
-				<view class="weui-cell weui-cell_active weui-cell_vcode">
-					<view class="weui-cell__hd"><label class="weui-label">平衡-P</label></view>
-					<view class="weui-cell__bd">
-						<input class="weui-input" type="text" placeholder="数值" placeholder-class="weui-input__placeholder" value="{{bc_parm1_value}}"/>
-					</view>
-					<view class="weui-cell__ft">
-						<a class="weui-btn weui-btn_default weui-vcode-btn" style="width:22vw; font-size: 4vw">发送</a>
-					</view>
-				</view>
-				<view class="weui-cell weui-cell_active weui-cell_vcode">
-					<view class="weui-cell__hd"><label class="weui-label">平衡-I</label></view>
-					<view class="weui-cell__bd">
-						<input class="weui-input" type="text" placeholder="数值" placeholder-class="weui-input__placeholder" value="{{bc_parm1_value}}"/>
-					</view>
-					<view class="weui-cell__ft">
-						<a class="weui-btn weui-btn_default weui-vcode-btn" style="width:22vw; font-size: 4vw">发送</a>
-					</view>
-				</view>
-				<view class="weui-cell weui-cell_active weui-cell_vcode">
-					<view class="weui-cell__hd"><label class="weui-label">平衡-D</label></view>
-					<view class="weui-cell__bd">
-						<input class="weui-input" type="text" placeholder="数值" placeholder-class="weui-input__placeholder" value="{{bc_parm1_value}}"/>
-					</view>
-					<view class="weui-cell__ft">
-						<a class="weui-btn weui-btn_default weui-vcode-btn" style="width:22vw; font-size: 4vw">发送</a>
-					</view>
-				</view>
-			</view>
-		</view>
-
 		<view class="bc_dir_ctl">
 			<view class="button-sp-area">
-				<a class="weui-btn weui-btn_mini weui-btn_default">
+				<!-- <a class="weui-btn weui-btn_mini weui-btn_default">
 					<image class="weui-btn_cell__icon" src="../image/left_up.png"></image>
-				</a>
+				</a> -->
 				<a class="weui-btn weui-btn_mini weui-btn_default">
-					<image class="weui-btn_cell__icon" src="../image/up.png"></image>
+					<image class="weui-btn_cell__icon" src="../image/up.png" bindtap="up_command"></image>
 				</a>
-				<a class="weui-btn weui-btn_mini weui-btn_default">
+				<!-- <a class="weui-btn weui-btn_mini weui-btn_default">
 					<image class="weui-btn_cell__icon" src="../image/right_up.png"></image>
-				</a>
+				</a> -->
 			</view>
 			<view class="button-sp-area">
 				<a class="weui-btn weui-btn_mini weui-btn_default">
-					<image class="weui-btn_cell__icon" src="../image/left.png"></image>
+					<image class="weui-btn_cell__icon" src="../image/left.png" bindtap="left_command"></image>
 				</a>
 				<a class="weui-btn weui-btn_mini weui-btn_default">
-					<image class="weui-btn_cell__icon" src="../image/centre.png"></image>
+					<image class="weui-btn_cell__icon" src="../image/centre.png" bindtap="stop_command"></image>
 				</a>
 				<a class="weui-btn weui-btn_mini weui-btn_default">
-					<image class="weui-btn_cell__icon" src="../image/right.png"></image>
+					<image class="weui-btn_cell__icon" src="../image/right.png" bindtap="right_command"></image>
 				</a>
 			</view>
 			<view class="button-sp-area">
-				<a class="weui-btn weui-btn_mini weui-btn_default">
+				<!-- <a class="weui-btn weui-btn_mini weui-btn_default">
 					<image class="weui-btn_cell__icon" src="../image/left_down.png"></image>
-				</a>
+				</a> -->
 				<a class="weui-btn weui-btn_mini weui-btn_default">
-					<image class="weui-btn_cell__icon" src="../image/down.png"></image>
+					<image class="weui-btn_cell__icon" src="../image/down.png" bindtap="down_command"></image>
 				</a>
-				<a class="weui-btn weui-btn_mini weui-btn_default">
+				<!-- <a class="weui-btn weui-btn_mini weui-btn_default">
 					<image class="weui-btn_cell__icon" src="../image/right_down.png"></image>
-				</a>
+				</a> -->
 			</view>
 		</view>
 	</veiw>
